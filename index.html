@@ -13,57 +13,45 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
     <!-- CSS & Font Files --> 
-    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel+Decorative|Libre+Barcode+128+Text|Libre+Barcode+39+Text|Noto+Sans" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 
 </head>
 
 <body>
     
+  <div class="container-fluid">
+      <div class="row firstRow">
+          
+          <div class="col-12 col-md-4 jumbotron text-center">
+            <img src="./assets/images/circled-7.png">
+            <h1>Seven Deadly GIFs<br>...And More</h1>
+            
+            <form id="gifForm">
+              <!-- <label for="gifSearch">Find More GIFs</label>   -->
+              <input type="text" id="gifSearch" class="col-12 form-control" placeholder="Search For New GIFs"><br>
+              <input id="enterBtn" type="submit" value="Enter" class="btn btn-block">
+            </form>
+          </div>  
 
-
-    <!-- Score Header -->
-
-
-
-    <div id="scoreArea">
-        
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-12 col-md-4 jumbotron text-center">
-                 <h1>Seven Deadly Sins<br>...And More</h1>
-                 <h3>(Search For New GIFs)</h3>
-                 
-                  <form id="gifForm">
-                    <!-- <label for="gifSearch">Find More GIFs</label>   -->
-                    <input type="text" id="gifSearch" class="col-12"><br>
-                    <input id="gifAdd" type="submit" value="Enter" class="btn btn-block">
-                  </form>
-
-              </div>  
-
-            <div class="row col-12 col-md-8" id="iconHolder"> 
-                <!-- Add Search Buttons Here -->
-            </div>  
-
-            <div class="row col-12 col-8-md" id="iconResults"> 
-                <!-- Add Search Results Here -->
-            </div>  
-
-
-
+          <div class="row col-12 col-md-8 no-gutters" id="iconSection"> 
+            <h2 class="text-center col-12">Pick a GIF</h2>
+            <div class="row col-12 text-center" id="iconHolder">
+            <!-- Add Search Buttons Here -->
             </div>
-        </div>
+          </div> 
+      </div>
 
-    </div>
-
-
-
-
-
-
-
+      
+      <div class="row secondRow">
+        <h2 class="text-center col-12" id="clickMsg">Click a GIF</h2>
+        <img class="col-12 col-8-md text-center" id="startImage" src="https://media.giphy.com/media/l3E6BG56dhjuawAX6/giphy.gif">   
+          <div class="row col-12 col-8-md justify-content-around align-items-center" id="iconResults"> 
+              <!-- Add Search Results Here -->
+              
+          </div>  
+      </div>   
+   </div>
 
     
     <!--Footer Section-->
@@ -72,7 +60,6 @@
             <div class="row">
                 <div class="col-sm-12 pt-4 pb-3 text-center">
                     <p><strong>© Copyright 2018 Tony Wible</strong></p>
-                    <p>Cuphead video is the property of StudioMDHR and is not affiliated with this educational site.</p>
                 </div>
             </div>
         </div>

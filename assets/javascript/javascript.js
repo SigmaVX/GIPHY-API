@@ -3,90 +3,135 @@
     var queryURL="";
 
     // Array of GIF Searches
-    var gifSearch = ["Lust", "Greed", "Sloth", "Wrath", "Envy", "Pride", "Gluttony"];
-    var gifImage = ["http://via.placeholder.com/100x100","http://via.placeholder.com/100x100","http://via.placeholder.com/100x100","http://via.placeholder.com/100x100","http://via.placeholder.com/100x100","http://via.placeholder.com/100x100","http://via.placeholder.com/100x100"];
+    var gifTitle = ["Lust", "Greed", "Sloth", "Wrath", "Envy", "Pride", "Gluttony"];
+    var gifSearch = ["bling", "Mr Burns", "Homer Simpson", "wrath", "Envy", "Pride", "South Park"];
+    var gifImage = ["./assets/images/lust.png","./assets/images/greed.png","./assets/images/sloth.png","./assets/images/wrath.png","./assets/images/envy.png","./assets/images/pride.png","./assets/images/gluttony.png"];
 
     // Renders The Array Buttons
-    function makeDefaults() {
+    function makeButtons() {
     
         // Clears Div Before Adding Buttons | Prevents Duplicates
         $("#iconHolder").empty();
         
         for (i=0; i < gifSearch.length ; i++ ){
             
-            var newDiv = $("<div>").html(gifSearch[i]+"<br>");
-            newDiv.attr("class", "col-md-3 col-6 iconText text-center");
-            newDiv.attr("name", gifSearch[i]);
+            var newDiv = $("<div>");
+            newDiv.attr("class", "col-md-3 col-6 my-2 iconDiv text-center");
+            newDiv.attr("search-term", gifSearch[i]);
             $("#iconHolder").append(newDiv);
+
+            var newTerm = $("<p>").html(gifTitle[i]+"<br>");
+            newTerm.attr("class", "col-12 text-center titles");
+            $(newDiv).append(newTerm);
             
             var newImage = $("<img>").attr("src", gifImage[i]);
-            newImage.attr("class", "img-circle img-responsive iconImage");
-            newImage.attr("id", "iconImg");
+            newImage.attr("class", "img-responsive iconImage");
+            newImage.attr("id", gifImage[i]);
             $(newDiv).append(newImage);
         }
     }
 
-    makeDefaults();
+    
 
     // Function To Make New Search Term
-    function newSearch(){
+    function newButton(){
         var term = $("#gifSearch").val().trim();
-        var newSearch = $("<div>").html(term);
+      
+
+        // Adds To Array
         gifSearch.push(term);
+        gifTitle.push(term);
+        gifImage.push("./assets/images/misc.png");
         console.log(gifSearch);
-        newSearch.attr("class", "col-md-3 col-6 iconText text-center");
-        newSearch.attr("name", term);
-        $("#iconHolder").append(newSearch);
-        var newSearchImage = $("<img>").attr("src", "http://via.placeholder.com/100x100");
-        newSearch.append(newSearchImage);
+        console.log(gifImage);
+        
+        name = term;
+        console.log("Name: " + name);  
+        
+        makeButtons();
+        gifPull();
+        $("#clickMsg").show();
+        $("#startImage").hide();
 
     }
-    
 
     // Function Searches For GIFs    
     function gifPull(){
-    // var name = $(this).attr("name");
-    name = "greed";
-    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&limit=10&rating=g&api_key=QZDf0QjsN3A0gN7rgrTgf5sCJHGNw4tj";
+
+    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&limit=10&rating=pg&api_key=QZDf0QjsN3A0gN7rgrTgf5sCJHGNw4tj";
 
     $.ajax({
         url: queryURL,
         method: "GET"
         }).then(function(response) {
             console.log(response);
+            $("#iconResults").empty();
+            $("#iconResults").show();
             
-            for(i=0; i < 26 ; i++){
-                var holder = $("<div>").attr("class", "gifHolder col-12 col-md-2");
+
+            for(i=0; i < 10 ; i++){
+
+                var holder = $("<div>").attr("class", "gifHolder col-12 col-md-3 text-center");
                 $("#iconResults").append(holder);
                 
-                var gif = $("<img>").attr("src", response.data[i].images.fixed_width.url);
+                var gif = $("<img>").attr("src", response.data[i].images.fixed_width_still.url);
+                gif.attr("class", "gifs my-2 mx-1");
+                gif.attr("data-motion", response.data[i].images.fixed_width.url);
+                gif.attr("data-still", response.data[i].images.fixed_width_still.url);
+                gif.attr("state", "still");
+                gif.attr("id", "gif"+i);
                 holder.append(gif);
-                gif.hide();
                 
-                var still = $("<img>").attr("src", response.data[i].images.fixed_width_still.url);
-                holder.append(still);
-                
-                var rating = $("<div>").html(response.data[i].rating);
-                rating.attr("class", "rating");
+                var rating = $("<div>").html("Rating: " + response.data[i].rating.toUpperCase());
+                rating.attr("class", "rating text-center");
                 holder.append(rating);
             }
         });
     }
-
-  gifPull();
-
-
-
-  // This function handles events where the add movie button is clicked
-  $("#add-movie").on("click", function(event) {
-    event.preventDefault();
     
-    // The movie from the textbox is then added to our array
-    movies.push(movie);
 
-    // Calling renderButtons which handles the processing of our movie array
-    renderButtons();
+    // Searchs Based On Selected Icon
+    $(document).on("click", ".iconDiv", function(){
+        name = $(this).attr("search-term");
+        gifPull();
+        $("#clickMsg").show();
+        $("#startImage").hide();
+    });
+        
 
+    // Toggle GIF
+    $(document).on("click", ".gifs", function(){
+        
+        console.log(this);
+
+        var state = $(this).attr("state");
+        
+        if(state==="still"){
+            $(this).attr("src", $(this).attr("data-motion"));
+            $(this).attr("state", "motion");
+        }
+
+        if(state==="motion"){
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("state", "still");
+        }
+    });
+
+
+// Adds New Search Term 
+  $("#enterBtn").on("click", function(event) {
+        event.preventDefault();
+        newButton();
+        $("#gifSearch").val("");
+        $("#clickMsg").show();
+        $("iconResults").show();
+        $("#startImage").hide();
   });
 
+
+// Page Set-Up On Load
+    makeButtons();
+    $("#clickMsg").hide();
+    $("#iconResults").hide();
+   
   

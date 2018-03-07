@@ -1,0 +1,111 @@
+h1{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h2{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 60px;
+    font-weight: 500;
+    
+}
+
+footer{
+    background-color: #048BA8;
+    color: #ffffff;
+    border-top: 5px solid #F18F01;
+}
+.jumbotron{
+    margin-bottom: 0px;
+    padding-bottom: 30px;
+    padding-top: 50px;
+    border-radius: 0px;
+    background-color:#2F2D2E;
+    color: #99C24D;
+
+}
+
+.firstRow{
+    border-bottom: 5px solid #F18F01;
+}
+
+
+.iconImage{
+    width: 85px;
+}
+
+.secondRow{
+    background-color: #2E4057;
+    color:#ffffff;
+    /* min-height: 100vh; */
+}
+
+.titles{
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+
+#iconHolder{
+    margin-bottom: 20px;
+}
+
+#iconSection{
+    background-color: #99C24D;
+    color: #2F2D2E;
+}
+
+#iconResults{
+    padding: 20px;
+}
+
+#startImage{
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;   
+}
+
+
+
+
+/* CSS For Background Video */
+.videoHolder {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .video {
+      height: 300%;
+      top: -100%;
+    }
+  }
+  
+  @media (max-aspect-ratio: 16/9) {
+    .video {
+      width: 300%;
+      left: -100%;
+    }
+  }
