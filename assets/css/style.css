@@ -11,8 +11,7 @@ h2{
     margin-bottom: 0px;
     font-family: 'Libre Barcode 128 Text', cursive;
     font-size: 60px;
-    font-weight: 500;
-    
+    font-weight: 500; 
 }
 
 footer{
@@ -20,6 +19,24 @@ footer{
     color: #ffffff;
     border-top: 5px solid #F18F01;
 }
+
+.btn{
+    color:#2F2D2E;
+    background-color: #99C24D;
+    border: 2px solid #ffffff;
+    border-radius: 7px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.btn:hover{
+    color:#ffffff;
+    background-color: #048BA8;
+    border: 2px solid #ffffff;
+}
+
+
 .jumbotron{
     margin-bottom: 0px;
     padding-bottom: 30px;
@@ -33,7 +50,6 @@ footer{
 .firstRow{
     border-bottom: 5px solid #F18F01;
 }
-
 
 .iconImage{
     width: 85px;
@@ -54,7 +70,7 @@ footer{
 
 
 #iconHolder{
-    margin-bottom: 20px;
+    margin: 20px auto;
 }
 
 #iconSection{
@@ -74,38 +90,17 @@ footer{
     overflow: hidden;   
 }
 
-
-
-
-/* CSS For Background Video */
-.videoHolder {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    z-index: -100;
-}
-
-.video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media (min-aspect-ratio: 16/9) {
-    .video {
-      height: 300%;
-      top: -100%;
+@media only screen and (max-width: 600px){
+    
+    #iconHolder{
+        margin: 20px auto;
     }
-  }
-  
-  @media (max-aspect-ratio: 16/9) {
-    .video {
-      width: 300%;
-      left: -100%;
+
+    #iconResults{
+        padding-left: 7px;
     }
-  }
+    
+    .gifHolder{
+        padding-bottom: 20px;
+    }
+}

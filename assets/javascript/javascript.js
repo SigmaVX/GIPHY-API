@@ -4,7 +4,7 @@
 
     // Array of GIF Searches
     var gifTitle = ["Lust", "Greed", "Sloth", "Wrath", "Envy", "Pride", "Gluttony"];
-    var gifSearch = ["bling", "Mr Burns", "Homer Simpson", "wrath", "Envy", "Pride", "South Park"];
+    var gifSearch = ["lust", "stealing", "sleeping", "angry", "amazing", "I'm awesome", "eating"];
     var gifImage = ["./assets/images/lust.png","./assets/images/greed.png","./assets/images/sloth.png","./assets/images/wrath.png","./assets/images/envy.png","./assets/images/pride.png","./assets/images/gluttony.png"];
 
     // Renders The Array Buttons
@@ -58,7 +58,7 @@
     // Function Searches For GIFs    
     function gifPull(){
 
-    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&limit=10&rating=pg&api_key=QZDf0QjsN3A0gN7rgrTgf5sCJHGNw4tj";
+    queryURL = "https://api.giphy.com/v1/gifs/search?q=" + name + "&limit=12&rating=pg&api_key=QZDf0QjsN3A0gN7rgrTgf5sCJHGNw4tj";
 
     $.ajax({
         url: queryURL,
@@ -69,13 +69,13 @@
             $("#iconResults").show();
             
 
-            for(i=0; i < 10 ; i++){
+            for(i=0; i < 12 ; i++){
 
                 var holder = $("<div>").attr("class", "gifHolder col-12 col-md-3 text-center");
                 $("#iconResults").append(holder);
                 
                 var gif = $("<img>").attr("src", response.data[i].images.fixed_width_still.url);
-                gif.attr("class", "gifs my-2 mx-1");
+                gif.attr("class", "gifs col-12 my-2 mx-1");
                 gif.attr("data-motion", response.data[i].images.fixed_width.url);
                 gif.attr("data-still", response.data[i].images.fixed_width_still.url);
                 gif.attr("state", "still");
